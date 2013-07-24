@@ -22,6 +22,21 @@
 		BE925E0F179B99590082DAD9 /* OutlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE925E0E179B99590082DAD9 /* OutlineCell.m */; };
 		BE925E13179B99FF0082DAD9 /* OutlineController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE925E11179B99FF0082DAD9 /* OutlineController.m */; };
 		BE925E14179B99FF0082DAD9 /* OutlineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE925E12179B99FF0082DAD9 /* OutlineController.xib */; };
+		BE9286C4179CE80F00FF0CED /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286C3179CE80E00FF0CED /* Bookmark.m */; };
+		BE9286C7179CE89C00FF0CED /* BookmarkFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286C6179CE89C00FF0CED /* BookmarkFolder.m */; };
+		BE9286CA179CE8E600FF0CED /* BookmarkFolderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286C9179CE8E600FF0CED /* BookmarkFolderDocument.m */; };
+		BE9286CD179CE91700FF0CED /* BookmarkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286CC179CE91700FF0CED /* BookmarkManager.m */; };
+		BE9286D0179D106900FF0CED /* SearchBarShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BE9286CE179D106900FF0CED /* SearchBarShadow.png */; };
+		BE9286D1179D106900FF0CED /* SearchBarShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE9286CF179D106900FF0CED /* SearchBarShadow@2x.png */; };
+		BE9286D4179D133D00FF0CED /* BookmarkFolderNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286D3179D133D00FF0CED /* BookmarkFolderNormalCell.m */; };
+		BE9286D6179D137400FF0CED /* BookmarkFolderNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9286D5179D137400FF0CED /* BookmarkFolderNormalCell.xib */; };
+		BE9286D9179D221800FF0CED /* BookmarkFolderDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286D8179D221800FF0CED /* BookmarkFolderDefaultCell.m */; };
+		BE9286DB179D223100FF0CED /* BookmarkFolderDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9286DA179D223100FF0CED /* BookmarkFolderDefaultCell.xib */; };
+		BE9286E2179D2EE100FF0CED /* BookmarkFolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286E0179D2EE100FF0CED /* BookmarkFolderController.m */; };
+		BE9286E3179D2EE100FF0CED /* BookmarkFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9286E1179D2EE100FF0CED /* BookmarkFolderController.xib */; };
+		BE9286E6179D31A700FF0CED /* FolderRenameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286E5179D31A700FF0CED /* FolderRenameTextField.m */; };
+		BE9286EA179D332000FF0CED /* NewBookmarkFolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286E8179D332000FF0CED /* NewBookmarkFolderController.m */; };
+		BE9286EB179D332000FF0CED /* NewBookmarkFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9286E9179D332000FF0CED /* NewBookmarkFolderController.xib */; };
 		BEA464571798E8C5004D5122 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA464561798E8C5004D5122 /* UIKit.framework */; };
 		BEA464591798E8C5004D5122 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA464581798E8C5004D5122 /* Foundation.framework */; };
 		BEA4645B1798E8C5004D5122 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA4645A1798E8C5004D5122 /* CoreGraphics.framework */; };
@@ -264,6 +279,30 @@
 		BE925E10179B99FF0082DAD9 /* OutlineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OutlineController.h; path = Code/Controllers/OutlineController.h; sourceTree = "<group>"; };
 		BE925E11179B99FF0082DAD9 /* OutlineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OutlineController.m; path = Code/Controllers/OutlineController.m; sourceTree = "<group>"; };
 		BE925E12179B99FF0082DAD9 /* OutlineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutlineController.xib; path = Code/Controllers/OutlineController.xib; sourceTree = "<group>"; };
+		BE9286C2179CE80E00FF0CED /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
+		BE9286C3179CE80E00FF0CED /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
+		BE9286C5179CE89C00FF0CED /* BookmarkFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkFolder.h; sourceTree = "<group>"; };
+		BE9286C6179CE89C00FF0CED /* BookmarkFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkFolder.m; sourceTree = "<group>"; };
+		BE9286C8179CE8E600FF0CED /* BookmarkFolderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkFolderDocument.h; sourceTree = "<group>"; };
+		BE9286C9179CE8E600FF0CED /* BookmarkFolderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkFolderDocument.m; sourceTree = "<group>"; };
+		BE9286CB179CE91700FF0CED /* BookmarkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkManager.h; sourceTree = "<group>"; };
+		BE9286CC179CE91700FF0CED /* BookmarkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkManager.m; sourceTree = "<group>"; };
+		BE9286CE179D106900FF0CED /* SearchBarShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarShadow.png; sourceTree = "<group>"; };
+		BE9286CF179D106900FF0CED /* SearchBarShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchBarShadow@2x.png"; sourceTree = "<group>"; };
+		BE9286D2179D133D00FF0CED /* BookmarkFolderNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookmarkFolderNormalCell.h; path = Code/Views/BookmarkFolderNormalCell.h; sourceTree = "<group>"; };
+		BE9286D3179D133D00FF0CED /* BookmarkFolderNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookmarkFolderNormalCell.m; path = Code/Views/BookmarkFolderNormalCell.m; sourceTree = "<group>"; };
+		BE9286D5179D137400FF0CED /* BookmarkFolderNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkFolderNormalCell.xib; path = Code/Views/BookmarkFolderNormalCell.xib; sourceTree = "<group>"; };
+		BE9286D7179D221800FF0CED /* BookmarkFolderDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookmarkFolderDefaultCell.h; path = Code/Views/BookmarkFolderDefaultCell.h; sourceTree = "<group>"; };
+		BE9286D8179D221800FF0CED /* BookmarkFolderDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookmarkFolderDefaultCell.m; path = Code/Views/BookmarkFolderDefaultCell.m; sourceTree = "<group>"; };
+		BE9286DA179D223100FF0CED /* BookmarkFolderDefaultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkFolderDefaultCell.xib; path = Code/Views/BookmarkFolderDefaultCell.xib; sourceTree = "<group>"; };
+		BE9286DF179D2EE100FF0CED /* BookmarkFolderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookmarkFolderController.h; path = Code/Controllers/BookmarkFolderController.h; sourceTree = "<group>"; };
+		BE9286E0179D2EE100FF0CED /* BookmarkFolderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookmarkFolderController.m; path = Code/Controllers/BookmarkFolderController.m; sourceTree = "<group>"; };
+		BE9286E1179D2EE100FF0CED /* BookmarkFolderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkFolderController.xib; path = Code/Controllers/BookmarkFolderController.xib; sourceTree = "<group>"; };
+		BE9286E4179D31A700FF0CED /* FolderRenameTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FolderRenameTextField.h; path = Code/Views/FolderRenameTextField.h; sourceTree = "<group>"; };
+		BE9286E5179D31A700FF0CED /* FolderRenameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FolderRenameTextField.m; path = Code/Views/FolderRenameTextField.m; sourceTree = "<group>"; };
+		BE9286E7179D332000FF0CED /* NewBookmarkFolderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewBookmarkFolderController.h; path = Code/Controllers/NewBookmarkFolderController.h; sourceTree = "<group>"; };
+		BE9286E8179D332000FF0CED /* NewBookmarkFolderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewBookmarkFolderController.m; path = Code/Controllers/NewBookmarkFolderController.m; sourceTree = "<group>"; };
+		BE9286E9179D332000FF0CED /* NewBookmarkFolderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewBookmarkFolderController.xib; path = Code/Controllers/NewBookmarkFolderController.xib; sourceTree = "<group>"; };
 		BEA464531798E8C5004D5122 /* Documentation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Documentation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA464561798E8C5004D5122 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BEA464581798E8C5004D5122 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -576,6 +615,8 @@
 		BEA464821798F5C8004D5122 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				BE9286CE179D106900FF0CED /* SearchBarShadow.png */,
+				BE9286CF179D106900FF0CED /* SearchBarShadow@2x.png */,
 				BEA46602179937B0004D5122 /* ToolKit-Shadow.png */,
 				BEA46603179937B0004D5122 /* ToolKit-Shadow@2x.png */,
 				BEA465F51799245E004D5122 /* SideView-Shadow.png */,
@@ -767,6 +808,12 @@
 		BEA465F31798F5D6004D5122 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BE9286E7179D332000FF0CED /* NewBookmarkFolderController.h */,
+				BE9286E8179D332000FF0CED /* NewBookmarkFolderController.m */,
+				BE9286E9179D332000FF0CED /* NewBookmarkFolderController.xib */,
+				BE9286DF179D2EE100FF0CED /* BookmarkFolderController.h */,
+				BE9286E0179D2EE100FF0CED /* BookmarkFolderController.m */,
+				BE9286E1179D2EE100FF0CED /* BookmarkFolderController.xib */,
 				BE925E10179B99FF0082DAD9 /* OutlineController.h */,
 				BE925E11179B99FF0082DAD9 /* OutlineController.m */,
 				BE925E12179B99FF0082DAD9 /* OutlineController.xib */,
@@ -800,6 +847,14 @@
 		BEA4660117992C46004D5122 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE9286E4179D31A700FF0CED /* FolderRenameTextField.h */,
+				BE9286E5179D31A700FF0CED /* FolderRenameTextField.m */,
+				BE9286D2179D133D00FF0CED /* BookmarkFolderNormalCell.h */,
+				BE9286D3179D133D00FF0CED /* BookmarkFolderNormalCell.m */,
+				BE9286D5179D137400FF0CED /* BookmarkFolderNormalCell.xib */,
+				BE9286D7179D221800FF0CED /* BookmarkFolderDefaultCell.h */,
+				BE9286D8179D221800FF0CED /* BookmarkFolderDefaultCell.m */,
+				BE9286DA179D223100FF0CED /* BookmarkFolderDefaultCell.xib */,
 				BE6CB275179A3AD9002D6270 /* SearchHeader.h */,
 				BE6CB276179A3AD9002D6270 /* SearchHeader.m */,
 				BE6CB26D179A3875002D6270 /* NodeCell.h */,
@@ -821,6 +876,14 @@
 		BEA466061799467F004D5122 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BE9286CB179CE91700FF0CED /* BookmarkManager.h */,
+				BE9286CC179CE91700FF0CED /* BookmarkManager.m */,
+				BE9286C8179CE8E600FF0CED /* BookmarkFolderDocument.h */,
+				BE9286C9179CE8E600FF0CED /* BookmarkFolderDocument.m */,
+				BE9286C5179CE89C00FF0CED /* BookmarkFolder.h */,
+				BE9286C6179CE89C00FF0CED /* BookmarkFolder.m */,
+				BE9286C2179CE80E00FF0CED /* Bookmark.h */,
+				BE9286C3179CE80E00FF0CED /* Bookmark.m */,
 				BE925E04179B98140082DAD9 /* Book.h */,
 				BE925E05179B98140082DAD9 /* Book.m */,
 				BE925E07179B98940082DAD9 /* Outline.h */,
@@ -1105,6 +1168,12 @@
 				BE925E01179B8A000082DAD9 /* ReaderController.xib in Resources */,
 				BE925E03179B8B9A0082DAD9 /* Documentation.css in Resources */,
 				BE925E14179B99FF0082DAD9 /* OutlineController.xib in Resources */,
+				BE9286D0179D106900FF0CED /* SearchBarShadow.png in Resources */,
+				BE9286D1179D106900FF0CED /* SearchBarShadow@2x.png in Resources */,
+				BE9286D6179D137400FF0CED /* BookmarkFolderNormalCell.xib in Resources */,
+				BE9286DB179D223100FF0CED /* BookmarkFolderDefaultCell.xib in Resources */,
+				BE9286E3179D2EE100FF0CED /* BookmarkFolderController.xib in Resources */,
+				BE9286EB179D332000FF0CED /* NewBookmarkFolderController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,6 +1212,15 @@
 				BE925E0C179B990A0082DAD9 /* ReaderPopoverBackgroundView.m in Sources */,
 				BE925E0F179B99590082DAD9 /* OutlineCell.m in Sources */,
 				BE925E13179B99FF0082DAD9 /* OutlineController.m in Sources */,
+				BE9286C4179CE80F00FF0CED /* Bookmark.m in Sources */,
+				BE9286C7179CE89C00FF0CED /* BookmarkFolder.m in Sources */,
+				BE9286CA179CE8E600FF0CED /* BookmarkFolderDocument.m in Sources */,
+				BE9286CD179CE91700FF0CED /* BookmarkManager.m in Sources */,
+				BE9286D4179D133D00FF0CED /* BookmarkFolderNormalCell.m in Sources */,
+				BE9286D9179D221800FF0CED /* BookmarkFolderDefaultCell.m in Sources */,
+				BE9286E2179D2EE100FF0CED /* BookmarkFolderController.m in Sources */,
+				BE9286E6179D31A700FF0CED /* FolderRenameTextField.m in Sources */,
+				BE9286EA179D332000FF0CED /* NewBookmarkFolderController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -77,7 +77,7 @@
     NSLayoutConstraint *leadingCons = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[OB]" options:0 metrics:nil views:viewDictionarys][0];
     self.leadingCons = leadingCons;
     [self.contentView addConstraint:self.leadingCons];
-    [self.main setContentHuggingPriority:749 forAxis:UILayoutConstraintAxisHorizontal];
+    [self.main setContentHuggingPriority:251 forAxis:UILayoutConstraintAxisHorizontal];
     
     self.main.preferredMaxLayoutWidth = [self mainPreferedMaxLayoutWidth];
 }

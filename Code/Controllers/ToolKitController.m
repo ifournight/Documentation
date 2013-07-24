@@ -10,6 +10,7 @@
 #import "Appearance.h"
 #import "SSegmentedControl.h"
 #import "SearchController.h"
+#import "BookmarkFolderController.h"
 
 @interface ToolKitController ()
 
@@ -63,17 +64,19 @@
     segmentedControl.delegate = self;
     // TODO:Child Controllers
     SearchController *searchController = [[SearchController alloc] initWithNibName:nil bundle:nil];
+    BookmarkFolderController *bookmarkFolderController = [[BookmarkFolderController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *bookmarkNavigationController = [[UINavigationController alloc] initWithRootViewController:bookmarkFolderController];
 //    UIViewController *viewController1 = [[UIViewController alloc] init];
     UIViewController *viewController2 = [[UIViewController alloc] init];
-    UIViewController *viewController3 = [[UIViewController alloc] init];
+//    UIViewController *viewController3 = [[UIViewController alloc] init];
 //    viewController1.view.backgroundColor = [UIColor colorWithRed:0.212 green:0.608 blue:0.906 alpha:1.0];
     viewController2.view.backgroundColor = [UIColor colorWithRed:0.804 green:0.373 blue:0.624 alpha:1.0];
-    viewController3.view.backgroundColor = [UIColor colorWithRed:0.992 green:0.310 blue:0.341 alpha:1.0];
+//    viewController3.view.backgroundColor = [UIColor colorWithRed:0.992 green:0.310 blue:0.341 alpha:1.0];
     UIViewAutoresizing autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 //    viewController1.view.autoresizingMask = autoresizingMask;
     viewController2.view.autoresizingMask = autoresizingMask;
-    viewController3.view.autoresizingMask = autoresizingMask;
-    self.viewControllers = @[searchController, viewController2, viewController3];
+//    viewController3.view.autoresizingMask = autoresizingMask;
+    self.viewControllers = @[searchController, viewController2, bookmarkNavigationController];
     // Default Selection
     self.transitionQueue = [[NSMutableArray alloc] init];
     [self selectViewControllerAtIndex:0 animated:NO];
@@ -182,6 +185,31 @@
     CGRect containerFrame = self.containerView.bounds;
     CGFloat containerWidth = containerFrame.size.width;
     return CGRectMake(containerWidth, 0, containerFrame.size.width, containerFrame.size.height);
+}
+
+#pragma Pesenting View Controller Subclass
+
+- (BOOL)definesPresentationContext
+{
+    return YES;
+}
+
+@end
+
+@implementation UIViewController (ToolKitController)
+
+- (ToolKitController *)toolKitController
+{
+    UIViewController *parentController = self.parentViewController;
+    if (parentController) {
+        if ([parentController isKindOfClass:[ToolKitController class]]) {
+            return (ToolKitController *)parentController;
+        }   else {
+            return parentController.toolKitController;
+        }
+    }   else {
+        return nil;
+    }
 }
 
 @end

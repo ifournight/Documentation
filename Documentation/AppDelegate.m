@@ -10,6 +10,7 @@
 #import "RevealSideController.h"
 #import "LibraryManager.h"
 #import "SearchManager.h"
+#import "BookmarkManager.h"
 
 @implementation AppDelegate
 
@@ -21,6 +22,19 @@
     RevealSideController *revealSideController = [[RevealSideController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = revealSideController;
     [self.window makeKeyAndVisible];
+    // BookmarkManager Reload
+    [[BookmarkManager share] deleteAllBookmarkFolderDocumentsWithCompletionHandler:^{
+        [[BookmarkManager share] reloadBookmarkFolderDocumentsWithcompletionHandler:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:BookmarkManagerDidReloadBookmarkFolderDocumentsNotification
+                                                                object:nil];
+            NSLog(@"BookmarkManagerDidReloadBookmarkFolderDocumentsNotification");
+        }];
+    }];
+//    [[BookmarkManager share] reloadBookmarkFolderDocumentsWithcompletionHandler:^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:BookmarkManagerDidReloadBookmarkFolderDocumentsNotification
+//                                                            object:nil];
+//        NSLog(@"BookmarkManagerDidReloadBookmarkFolderDocumentsNotification");
+//    }];
     [[LibraryManager share] reloadLibraries];
     [[SearchManager share] prepareSearch];
     return YES;
@@ -41,6 +55,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[BookmarkManager share] doSomethingBeforeGoingToBackground];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

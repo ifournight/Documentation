@@ -30,3 +30,10 @@
 
 @end
 
+@interface UIViewController (ToolKitController)
+
+// If A UIViewController has an ToolKitController anchestor, return it. if not, return nil. 
+@property (nonatomic, readonly) ToolKitController *toolKitController;
+
+@end
+
