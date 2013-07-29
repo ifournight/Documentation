@@ -32,9 +32,6 @@ typedef NS_ENUM(NSInteger, RevealSideControllerSideState)
 // The Horizontal Pan Gesture Recognizer.
 @property (nonatomic, strong) SDirectionPanGestureRecognizer *horizontalPan;
 
-// Used for Core Layout Animation
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sideViewLeadingConstraint;
-
 @end
 
 @implementation RevealSideController
@@ -89,20 +86,10 @@ typedef NS_ENUM(NSInteger, RevealSideControllerSideState)
         // Child View Controller
         [self addChildViewController:_sideController];
         [self beginAppearanceTransition:YES animated:YES];
+        _sideController.view.frame = self.sideView.bounds;
         [self.sideView addSubview:_sideController.view];
         [self endAppearanceTransition];
         [_sideController didMoveToParentViewController:self];
-        // Constraints
-        NSDictionary *sideDictionary = @{@"Side" : _sideController.view};
-        [_sideController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.sideView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[Side]|"
-                                                                              options:0
-                                                                              metrics:nil
-                                                                                views:sideDictionary]];
-        [self.sideView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[Side]|"
-                                                                              options:0
-                                                                              metrics:nil
-                                                                                views:sideDictionary]];
     }
 }
 
@@ -118,20 +105,10 @@ typedef NS_ENUM(NSInteger, RevealSideControllerSideState)
     if (_centralController != nil) {
         [self addChildViewController:_centralController];
         [self beginAppearanceTransition:YES animated:YES];
+        _centralController.view.frame = self.centralView.bounds;
         [self.centralView addSubview:_centralController.view];
         [self endAppearanceTransition];
         [_centralController didMoveToParentViewController:self];
-        // Cons
-        NSDictionary *viewsDictionary = @{@"Central": _centralController.view};
-        [self.centralView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[Central]|"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:viewsDictionary]];
-        [self.centralView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[Central]|"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:viewsDictionary]];
-        [_centralController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
 }
 
@@ -170,7 +147,8 @@ typedef NS_ENUM(NSInteger, RevealSideControllerSideState)
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.sideViewLeadingConstraint.constant = -sideWidth;
+//                         self.sideViewLeadingConstraint.constant = -sideWidth;
+                         self.sideView.center = CGPointMake(self.sideView.center.x - sideWidth, self.sideView.center.y);
                          [self.view layoutIfNeeded];
                          self.sideShadowView.alpha = 0.0;
                          self.dimView.alpha = 0.0;
@@ -187,11 +165,14 @@ typedef NS_ENUM(NSInteger, RevealSideControllerSideState)
         return;
     }
     self.sideState = RevealSideControllerSideStateRevealing;
+    CGFloat sideWidth = self.sideView.frame.size.width;
+
     [UIView animateWithDuration:0.25
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.sideViewLeadingConstraint.constant = 0;
+//                         self.sideViewLeadingConstraint.constant = 0;
+                         self.sideView.center = CGPointMake(self.sideView.center.x + sideWidth, self.sideView.center.y);
                          [self.view layoutIfNeeded];
                          self.sideShadowView.alpha = 1.0;
                          self.dimView.alpha = 0.6;

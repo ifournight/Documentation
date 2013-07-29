@@ -36,6 +36,7 @@
         UIImage *background = [[UIImage imageNamed:@"BookmarkFolderNormalCellBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(3.0, 13.0, 3.0, 13.0)
                                                                                                          resizingMode:UIImageResizingModeTile];
         self.backgroundView = [[UIImageView alloc] initWithImage:background];
+        // TODO: Selection BackgroundView
     }
     return self;
 }
@@ -72,7 +73,13 @@
 
 - (void)setBookmarkFolder:(BookmarkFolder *)bookmarkFolder
 {
+    [_bookmarkFolder removeObserver:self forKeyPath:@"name"];
+    [_bookmarkFolder removeObserver:self forKeyPath:@"bookmarks"];
+    
     _bookmarkFolder = bookmarkFolder;
+    // KVO Observation.
+    [bookmarkFolder addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:NULL];
+    [bookmarkFolder addObserver:self forKeyPath:@"bookmarks" options:NSKeyValueObservingOptionNew context:NULL];
     self.name.text = _bookmarkFolder.name;
     self.count.text = [NSString stringWithFormat:@"%D", _bookmarkFolder.bookmarks.count];
 }
@@ -83,6 +90,19 @@
 
 - (IBAction)editButtonPressed:(id)sender {
     [self.delegate bookmarkFolderCell:self didTapEditButton:sender];
+}
+
+#pragma mark - Bookmark Folder KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([object isKindOfClass:[BookmarkFolder class]]) {
+        if ([keyPath isEqualToString:@"name"]) {
+            self.name.text = self.bookmarkFolder.name;
+        }   else if ([keyPath isEqualToString:@"bookmarks"]) {
+            self.count.text = [NSString stringWithFormat:@"%D", self.bookmarkFolder.bookmarks.count];
+        }
+    }
 }
 
 @end

@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+// TODO: Transfer To Non-Autolayout
+
 UIKIT_EXTERN NSString *const RevealSideControllerNeedRevealSideNotification;
 UIKIT_EXTERN NSString *const RevealSideControllerNeedHideSideNotification;
 

@@ -23,18 +23,18 @@
     self.window.rootViewController = revealSideController;
     [self.window makeKeyAndVisible];
     // BookmarkManager Reload
-    [[BookmarkManager share] deleteAllBookmarkFolderDocumentsWithCompletionHandler:^{
-        [[BookmarkManager share] reloadBookmarkFolderDocumentsWithcompletionHandler:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:BookmarkManagerDidReloadBookmarkFolderDocumentsNotification
-                                                                object:nil];
-            NSLog(@"BookmarkManagerDidReloadBookmarkFolderDocumentsNotification");
-        }];
-    }];
-//    [[BookmarkManager share] reloadBookmarkFolderDocumentsWithcompletionHandler:^{
-//        [[NSNotificationCenter defaultCenter] postNotificationName:BookmarkManagerDidReloadBookmarkFolderDocumentsNotification
-//                                                            object:nil];
-//        NSLog(@"BookmarkManagerDidReloadBookmarkFolderDocumentsNotification");
+//    [[BookmarkManager share] deleteAllBookmarkFolderDocumentsWithCompletionHandler:^{
+//        [[BookmarkManager share] reloadBookmarkFolderDocumentsWithcompletionHandler:^{
+//            [[NSNotificationCenter defaultCenter] postNotificationName:BookmarkManagerDidReloadBookmarkFolderDocumentsNotification
+//                                                                object:nil];
+//            NSLog(@"BookmarkManagerDidReloadBookmarkFolderDocumentsNotification");
+//        }];
 //    }];
+    [[BookmarkManager share] reloadBookmarkFolderDocumentsWithcompletionHandler:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:BookmarkManagerDidReloadBookmarkFolderDocumentsNotification
+                                                            object:nil];
+        NSLog(@"BookmarkManagerDidReloadBookmarkFolderDocumentsNotification");
+    }];
     [[LibraryManager share] reloadLibraries];
     [[SearchManager share] prepareSearch];
     return YES;
@@ -67,6 +67,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[BookmarkManager share] doSomethingBeforeGoingToBackground];
 }
 
 @end

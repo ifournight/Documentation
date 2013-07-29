@@ -56,7 +56,8 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     // TableView Offset to achieve design effect
-    self.tableView.contentOffset = CGPointMake(0, 20.0);
+    self.tableView.contentInset = UIEdgeInsetsMake(10.0, 0, 0, 0);
+    // Each Folder Bookmarks KVO
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,12 +119,12 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
     NewBookmarkFolderController *newBookmark = [[NewBookmarkFolderController alloc] initWithNibName:nil bundle:nil];
     newBookmark.modalPresentationStyle = UIModalPresentationCurrentContext;
     //TODO:ToolKitController instead of navigationController should present it.
-    [self.navigationController presentViewController:newBookmark animated:YES completion:^{
-        newBookmark.delegate = self;
-    }];
-//    [self.toolKitController presentViewController:newBookmark animated:YES completion:^{
+//    [self.navigationController presentViewController:newBookmark animated:YES completion:^{
 //        newBookmark.delegate = self;
 //    }];
+    [self.toolKitController presentViewController:newBookmark animated:YES completion:^{
+        newBookmark.delegate = self;
+    }];
 }
 
 #pragma mark - Table View Editing
@@ -185,6 +186,18 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - BookmarkNormalCellDelegate
+
+- (void)bookmarkFolderCell:(BookmarkFolderNormalCell *)bookmarkFolderCell didTapDelelteButton:(UIButton *)deleteButton
+{
+    // Delete BookmarkFolderDocument
+}
+
+- (void)bookmarkFolderCell:(BookmarkFolderNormalCell *)bookmarkFolderCell didTapEditButton:(UIButton *)editButton
+{
+    // Edit BookmarkFolderDocument
+}
+
 #pragma mark - BookmarkManager Notification
 - (void)bookmarkManagerDidReloadDocuments
 {
@@ -195,8 +208,8 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
 #pragma mark - New Bookmark Delegate
 - (void)newBookmarkFolderDidCancel
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-//    [self.toolKitController dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.toolKitController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)newBookmarkFolderDidDoneWithName:(NSString *)name
@@ -206,8 +219,8 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
         [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
     }];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-//    [self.toolKitController dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.toolKitController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

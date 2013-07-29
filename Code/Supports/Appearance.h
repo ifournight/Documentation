@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Bookmark.h"
 
 @class SSegmentedControl;
 
@@ -49,6 +50,8 @@ typedef NS_ENUM(NSInteger, TokenTagViewType) {
 
 - (NSDictionary *)titleTextAttributesForNavBarButton;
 
+- (NSDictionary *)textAttributesForBookmarkName;
+
 // Images
 
 - (UIImage *)imageForTagBorderWithType:(TokenTagViewType)type;
@@ -84,6 +87,10 @@ typedef NS_ENUM(NSInteger, TokenTagViewType) {
 - (UIImage *)imageForNavBarShadow;
 
 - (UIImage *)imageForRenameTextFieldBackground;
+
+- (UIImage *)imageForBookmarkType:(BookmarkType)bookmarkType;
+
+- (UIImage *)imageForBookmarkCellBackground;
 
 // Buttons
 

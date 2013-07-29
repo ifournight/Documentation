@@ -250,6 +250,9 @@
 		BEA466231799467F004D5122 /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA466181799467F004D5122 /* Token.m */; };
 		BEA466241799467F004D5122 /* TokenSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA4661A1799467F004D5122 /* TokenSearchOperation.m */; };
 		BEC016F5179A2B8A00274189 /* Documentation.mom in Resources */ = {isa = PBXBuildFile; fileRef = BEC016F4179A2B8A00274189 /* Documentation.mom */; };
+		BEDB6ECF17A4EC3D00391046 /* PromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB6ECE17A4EC3D00391046 /* PromptView.m */; };
+		BEDB6ED217A500FD00391046 /* BookmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB6ED117A500FD00391046 /* BookmarkCell.m */; };
+		BEDB6ED417A5011000391046 /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEDB6ED317A5011000391046 /* BookmarkCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -535,6 +538,11 @@
 		BEA466191799467F004D5122 /* TokenSearchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenSearchOperation.h; sourceTree = "<group>"; };
 		BEA4661A1799467F004D5122 /* TokenSearchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenSearchOperation.m; sourceTree = "<group>"; };
 		BEC016F4179A2B8A00274189 /* Documentation.mom */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Documentation.mom; sourceTree = "<group>"; };
+		BEDB6ECD17A4EC3D00391046 /* PromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PromptView.h; path = Code/Views/PromptView.h; sourceTree = "<group>"; };
+		BEDB6ECE17A4EC3D00391046 /* PromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PromptView.m; path = Code/Views/PromptView.m; sourceTree = "<group>"; };
+		BEDB6ED017A500FD00391046 /* BookmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookmarkCell.h; path = Code/Views/BookmarkCell.h; sourceTree = "<group>"; };
+		BEDB6ED117A500FD00391046 /* BookmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookmarkCell.m; path = Code/Views/BookmarkCell.m; sourceTree = "<group>"; };
+		BEDB6ED317A5011000391046 /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkCell.xib; path = Code/Views/BookmarkCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +564,9 @@
 		BEA4644A1798E8C5004D5122 = {
 			isa = PBXGroup;
 			children = (
+				BEDB6ED017A500FD00391046 /* BookmarkCell.h */,
+				BEDB6ED117A500FD00391046 /* BookmarkCell.m */,
+				BEDB6ED317A5011000391046 /* BookmarkCell.xib */,
 				BEA4662517994816004D5122 /* Resources */,
 				BEA466061799467F004D5122 /* Models */,
 				BEA4660117992C46004D5122 /* Views */,
@@ -847,6 +858,8 @@
 		BEA4660117992C46004D5122 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BEDB6ECD17A4EC3D00391046 /* PromptView.h */,
+				BEDB6ECE17A4EC3D00391046 /* PromptView.m */,
 				BE9286E4179D31A700FF0CED /* FolderRenameTextField.h */,
 				BE9286E5179D31A700FF0CED /* FolderRenameTextField.m */,
 				BE9286D2179D133D00FF0CED /* BookmarkFolderNormalCell.h */,
@@ -1174,6 +1187,7 @@
 				BE9286DB179D223100FF0CED /* BookmarkFolderDefaultCell.xib in Resources */,
 				BE9286E3179D2EE100FF0CED /* BookmarkFolderController.xib in Resources */,
 				BE9286EB179D332000FF0CED /* NewBookmarkFolderController.xib in Resources */,
+				BEDB6ED417A5011000391046 /* BookmarkCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,6 +1235,8 @@
 				BE9286E2179D2EE100FF0CED /* BookmarkFolderController.m in Sources */,
 				BE9286E6179D31A700FF0CED /* FolderRenameTextField.m in Sources */,
 				BE9286EA179D332000FF0CED /* NewBookmarkFolderController.m in Sources */,
+				BEDB6ECF17A4EC3D00391046 /* PromptView.m in Sources */,
+				BEDB6ED217A500FD00391046 /* BookmarkCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1250,6 +1266,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1282,6 +1299,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1303,6 +1321,7 @@
 				GCC_PREFIX_HEADER = "Documentation/Documentation-Prefix.pch";
 				INFOPLIST_FILE = "Documentation/Documentation-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1314,6 +1333,7 @@
 				GCC_PREFIX_HEADER = "Documentation/Documentation-Prefix.pch";
 				INFOPLIST_FILE = "Documentation/Documentation-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

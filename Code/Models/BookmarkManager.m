@@ -81,7 +81,7 @@ typedef void (^OnFolderReady) (void);
     
     for (NSString *filePath in filePaths) {
         NSError *error = nil;
-        [fileManager removeItemAtPath:filePath error:nil];
+        [fileManager removeItemAtPath:filePath error:&error];
         if (error) {
             NSLog(@"%@", [error description]);
         }   else {
@@ -122,7 +122,7 @@ typedef void (^OnFolderReady) (void);
             // aesendint order
             return [path1Date compare:path2Date];
         }];
-        NSMutableArray *bookmarkFolderDocuments = [[NSMutableArray alloc] init];
+        __block NSMutableArray *bookmarkFolderDocuments = [[NSMutableArray alloc] init];
         // When all documents opened
         void (^onAllDocumentsOpened)(void) = ^() {
             // Check if default folder is in index 0, if not, ajust.
@@ -149,7 +149,7 @@ typedef void (^OnFolderReady) (void);
             [folderDocument openWithCompletionHandler:^(BOOL success) {
                 if (success) {
                     [bookmarkFolderDocuments addObject:folderDocument];
-                    if (self.bookmarkFolderDocuments.count == bookmarkFolderDocuments.count) {
+                    if (filePaths.count == bookmarkFolderDocuments.count) {
                         onAllDocumentsOpened();
                     }
                 }   else {
@@ -314,7 +314,9 @@ typedef void (^OnFolderReady) (void);
     __block NSArray *blockBookmarks = addedBookmarks;
     __block BookmarkFolderDocument *blockFolderDocument = folderDocument;
     OnFolderReady onFolderReady = ^() {
-        [blockFolderDocument.bookmarkFolder.bookmarks addObjectsFromArray:addedBookmarks];
+        // KVO compliance
+        NSIndexSet *indexs = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, addedBookmarks.count)];
+        [blockFolderDocument.bookmarkFolder insertBookmarks:addedBookmarks atIndexes:indexs];
         // Bookmarks folder change.
         for (Bookmark *bookmark in blockBookmarks) {
             bookmark.folder = blockFolderDocument.bookmarkFolder;
@@ -329,7 +331,11 @@ typedef void (^OnFolderReady) (void);
 {
     __block BookmarkFolderDocument *blockFolderDocument = folderDocument;
     OnFolderReady onFolderReady = ^() {
-        [blockFolderDocument.bookmarkFolder.bookmarks removeObjectsInArray:deletedBookmarks];
+        NSMutableArray *bookmarks = blockFolderDocument.bookmarkFolder.bookmarks;
+        NSIndexSet *indexs = [bookmarks indexesOfObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, bookmarks.count)] options:NSEnumerationConcurrent passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return [bookmarks containsObject:obj];
+        }];
+        [blockFolderDocument.bookmarkFolder removeBookmarksAtIndexes:indexs];
         [blockFolderDocument updateChangeCount:UIDocumentChangeDone];
         completionHandler();
     };
@@ -342,7 +348,8 @@ typedef void (^OnFolderReady) (void);
     __block BookmarkFolderDocument *blockToFolderDocument = toFolderDocument;
     __block NSArray *blockBookmarks = bookmarks;
     OnFolderReady onToFolderReady = ^() {
-        [blockToFolderDocument.bookmarkFolder.bookmarks addObjectsFromArray:bookmarks];
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, bookmarks.count)];
+        [blockToFolderDocument.bookmarkFolder insertBookmarks:bookmarks atIndexes:indexes];
         // Bookmarks folder change.
         [blockToFolderDocument updateChangeCount:UIDocumentChangeDone];
         for (Bookmark *bookmark in blockBookmarks) {
@@ -351,7 +358,11 @@ typedef void (^OnFolderReady) (void);
     };
     
     OnFolderReady onFromFolderReady = ^() {
-        [blockFromFolderDocument.bookmarkFolder.bookmarks removeObjectsInArray:bookmarks];
+        NSMutableArray *bookmarks = blockFromFolderDocument.bookmarkFolder.bookmarks;
+        NSIndexSet *indexs = [bookmarks indexesOfObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, bookmarks.count)] options:NSEnumerationConcurrent passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return [bookmarks containsObject:obj];
+        }];
+        [blockFromFolderDocument.bookmarkFolder removeBookmarksAtIndexes:indexs];
         [blockFromFolderDocument updateChangeCount:UIDocumentChangeDone];
         completionHandler();
     };

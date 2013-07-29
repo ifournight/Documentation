@@ -73,4 +73,34 @@
     [aCoder encodeObject:self.bookmarks forKey:@"bookmarks"];
 }
 
+- (NSInteger)countOfBookmarks
+{
+    return self.bookmarks.count;
+}
+
+- (void)insertObject:(Bookmark *)object inBookmarksAtIndex:(NSUInteger)index
+{
+    [self.bookmarks insertObject:object atIndex:index];
+}
+
+- (void)insertBookmarks:(NSArray *)array atIndexes:(NSIndexSet *)indexes
+{
+    [self.bookmarks insertObjects:array atIndexes:indexes];
+}
+
+- (void)removeObjectFromBookmarksAtIndex:(NSUInteger)index
+{
+    [self.bookmarks removeObjectAtIndex:index];
+}
+
+- (void)removeBookmarksObject:(Bookmark *)object
+{
+    [self.bookmarks removeObject:object];
+}
+
+- (void)removeBookmarksAtIndexes:(NSIndexSet *)indexes
+{
+    [self.bookmarks removeObjectsAtIndexes:indexes];
+}
+
 @end

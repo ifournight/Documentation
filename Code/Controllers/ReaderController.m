@@ -15,6 +15,11 @@
 #import "Token.h"
 #import "Node.h"
 #import "ReaderPopoverBackgroundView.h"
+#import "Bookmark.h"
+#import "BookmarkManager.h"
+#import "BookmarkFolderDocument.h"
+#import "BookmarkFolder.h"
+#import "PromptView.h"
 
 NSString *const ReaderControllerNeedOpenPageNotification = @"ReaderControllerNeedOpenPageNotification";
 NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOpenPageObjectKey";
@@ -35,6 +40,7 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
 
 @property (nonatomic, strong) UIPopoverController *outlinePopoverController;
 @property (nonatomic, strong) OutlineController *outlineController;
+@property (weak, nonatomic) IBOutlet PromptView *bookmarkPromptView;
 
 @end
 
@@ -76,6 +82,9 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
         [subview setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
     [self setupBarConstraints];
+    // Bookmark Prompt View
+    self.bookmarkPromptView.promptLabel.text = @"Bookmarked";
+    [self.bookmarkPromptView setNeedsLayout];
     // Open Page Notification
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(respondsToOpenPageNotificiation:)
@@ -84,6 +93,7 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
     // Button Targets
     [self.side addTarget:self action:@selector(sideButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [self.outline addTarget:self action:@selector(outlineButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bookmark addTarget:self action:@selector(bookmarkButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -115,6 +125,23 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
                                      permittedArrowDirections:UIPopoverArrowDirectionUp
                                                      animated:YES];
     }
+}
+
+- (void)bookmarkButtonTouchUpInside:(UIButton *)bookmarkButton
+{
+    dispatch_queue_t bookmarkCreationQueue = dispatch_queue_create("Bookmark Creation Queue", 0);
+    dispatch_async(bookmarkCreationQueue, ^{
+        Bookmark *newBookmark = [[Bookmark alloc] initWithName:self.title];
+        BookmarkManager *bookmarkManager = [BookmarkManager share];
+        BookmarkFolderDocument *defaultFolderDocument = bookmarkManager.bookmarkFolderDocuments[0];
+        [bookmarkManager addBookmarks:@[newBookmark] toFolder:defaultFolderDocument WithCompletionHandler:^{
+            // PromptView
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.bookmarkPromptView promptWithDuration:0.5];
+            });
+            // Update BookmarkFolderController and InsideBookmarkFolderController if necessary.
+        }];
+    });
 }
 
 #pragma mark - Popover Delegate, Management
@@ -301,7 +328,7 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
     dispatch_queue_t reloadBookQueue = dispatch_queue_create("reloadBookQueue", NULL);
     dispatch_async(reloadBookQueue, ^{
         NSData *bookData = [NSData dataWithContentsOfURL:bookURL];
-        NSDictionary *bookDictionary = [NSJSONSerialization JSONObjectWithData:bookData options:0 error:NULL];
+        NSDictionary *bookDictionary = [NSJSONSerialization JSONObjectWithData:bookData options:0 error:nil];
         Book *book = [[Book alloc] initWithBookDictionary:bookDictionary bookURL:bookURL rootURL:bookRootURL];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.book = book;

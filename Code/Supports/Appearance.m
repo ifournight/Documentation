@@ -168,6 +168,25 @@
     return image;
 }
 
+- (UIImage *)imageForBookmarkType:(BookmarkType)bookmarkType
+{
+    NSString *imageName = @"Book";
+    if (bookmarkType == BookmarkTypeGuide) {
+        imageName = @"Book";
+    }   else if (bookmarkType == BookmarkTypeReference) {
+        imageName = @"Reference";
+    }   else if (bookmarkType == BookmarkTypeSampleCode) {
+        imageName = @"SampleCode";
+    }
+    UIImage *image = [UIImage imageNamed:imageName];
+    return image;
+}
+
+- (UIImage *)imageForBookmarkCellBackground
+{
+    return [self imageForTokenCellBackground];
+}
+
 #pragma mark - Text Attributes;
 
 - (NSDictionary *)textAttributesForTagWithType:(TokenTagViewType)type
@@ -339,6 +358,11 @@
                             UITextAttributeTextShadowColor : [UIColor whiteColor],
                             UITextAttributeTextShadowOffset : [NSValue valueWithCGSize:CGSizeMake(0, 1.0)]};
     return titleTextAttributes;
+}
+
+- (NSDictionary *)textAttributesForBookmarkName
+{
+    return  [self textAttributesForNodeMain];
 }
 
 #pragma mark - Buttons
