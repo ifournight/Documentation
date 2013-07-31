@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE4F9BEC17A665A100CF82FF /* BookmarksController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9BEA17A665A100CF82FF /* BookmarksController.m */; };
+		BE4F9BED17A665A100CF82FF /* BookmarksController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE4F9BEB17A665A100CF82FF /* BookmarksController.xib */; };
 		BE6CB269179A3709002D6270 /* TokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6CB268179A3709002D6270 /* TokenCell.m */; };
 		BE6CB26C179A3735002D6270 /* TokenTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6CB26B179A3735002D6270 /* TokenTagView.m */; };
 		BE6CB26F179A3875002D6270 /* NodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6CB26E179A3875002D6270 /* NodeCell.m */; };
@@ -253,9 +255,18 @@
 		BEDB6ECF17A4EC3D00391046 /* PromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB6ECE17A4EC3D00391046 /* PromptView.m */; };
 		BEDB6ED217A500FD00391046 /* BookmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB6ED117A500FD00391046 /* BookmarkCell.m */; };
 		BEDB6ED417A5011000391046 /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEDB6ED317A5011000391046 /* BookmarkCell.xib */; };
+		BEF705ED17A7667300A19693 /* BookmarkCell-Select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF705EB17A7667300A19693 /* BookmarkCell-Select@2x.png */; };
+		BEF705EE17A7667300A19693 /* BookmarkCell-Selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF705EC17A7667300A19693 /* BookmarkCell-Selected@2x.png */; };
+		BEF705F317A766A600A19693 /* NavBarBackButtonBackground-Disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF705EF17A766A600A19693 /* NavBarBackButtonBackground-Disabled.png */; };
+		BEF705F417A766A600A19693 /* NavBarBackButtonBackground-Disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF705F017A766A600A19693 /* NavBarBackButtonBackground-Disabled@2x.png */; };
+		BEF705F517A766A600A19693 /* NavBarButtonBackground-Disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF705F117A766A600A19693 /* NavBarButtonBackground-Disabled.png */; };
+		BEF705F617A766A600A19693 /* NavBarButtonBackground-Disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF705F217A766A600A19693 /* NavBarButtonBackground-Disabled@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE4F9BE917A665A100CF82FF /* BookmarksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookmarksController.h; path = Code/Controllers/BookmarksController.h; sourceTree = SOURCE_ROOT; };
+		BE4F9BEA17A665A100CF82FF /* BookmarksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookmarksController.m; path = Code/Controllers/BookmarksController.m; sourceTree = SOURCE_ROOT; };
+		BE4F9BEB17A665A100CF82FF /* BookmarksController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarksController.xib; path = Code/Controllers/BookmarksController.xib; sourceTree = SOURCE_ROOT; };
 		BE6CB267179A3709002D6270 /* TokenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TokenCell.h; path = Code/Views/TokenCell.h; sourceTree = "<group>"; };
 		BE6CB268179A3709002D6270 /* TokenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TokenCell.m; path = Code/Views/TokenCell.m; sourceTree = "<group>"; };
 		BE6CB26A179A3735002D6270 /* TokenTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TokenTagView.h; path = Code/Views/TokenTagView.h; sourceTree = "<group>"; };
@@ -543,6 +554,12 @@
 		BEDB6ED017A500FD00391046 /* BookmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookmarkCell.h; path = Code/Views/BookmarkCell.h; sourceTree = "<group>"; };
 		BEDB6ED117A500FD00391046 /* BookmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookmarkCell.m; path = Code/Views/BookmarkCell.m; sourceTree = "<group>"; };
 		BEDB6ED317A5011000391046 /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkCell.xib; path = Code/Views/BookmarkCell.xib; sourceTree = "<group>"; };
+		BEF705EB17A7667300A19693 /* BookmarkCell-Select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BookmarkCell-Select@2x.png"; sourceTree = "<group>"; };
+		BEF705EC17A7667300A19693 /* BookmarkCell-Selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BookmarkCell-Selected@2x.png"; sourceTree = "<group>"; };
+		BEF705EF17A766A600A19693 /* NavBarBackButtonBackground-Disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButtonBackground-Disabled.png"; sourceTree = "<group>"; };
+		BEF705F017A766A600A19693 /* NavBarBackButtonBackground-Disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarBackButtonBackground-Disabled@2x.png"; sourceTree = "<group>"; };
+		BEF705F117A766A600A19693 /* NavBarButtonBackground-Disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButtonBackground-Disabled.png"; sourceTree = "<group>"; };
+		BEF705F217A766A600A19693 /* NavBarButtonBackground-Disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBarButtonBackground-Disabled@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,9 +581,6 @@
 		BEA4644A1798E8C5004D5122 = {
 			isa = PBXGroup;
 			children = (
-				BEDB6ED017A500FD00391046 /* BookmarkCell.h */,
-				BEDB6ED117A500FD00391046 /* BookmarkCell.m */,
-				BEDB6ED317A5011000391046 /* BookmarkCell.xib */,
 				BEA4662517994816004D5122 /* Resources */,
 				BEA466061799467F004D5122 /* Models */,
 				BEA4660117992C46004D5122 /* Views */,
@@ -626,6 +640,12 @@
 		BEA464821798F5C8004D5122 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				BEF705EF17A766A600A19693 /* NavBarBackButtonBackground-Disabled.png */,
+				BEF705F017A766A600A19693 /* NavBarBackButtonBackground-Disabled@2x.png */,
+				BEF705F117A766A600A19693 /* NavBarButtonBackground-Disabled.png */,
+				BEF705F217A766A600A19693 /* NavBarButtonBackground-Disabled@2x.png */,
+				BEF705EB17A7667300A19693 /* BookmarkCell-Select@2x.png */,
+				BEF705EC17A7667300A19693 /* BookmarkCell-Selected@2x.png */,
 				BE9286CE179D106900FF0CED /* SearchBarShadow.png */,
 				BE9286CF179D106900FF0CED /* SearchBarShadow@2x.png */,
 				BEA46602179937B0004D5122 /* ToolKit-Shadow.png */,
@@ -819,6 +839,9 @@
 		BEA465F31798F5D6004D5122 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BE4F9BE917A665A100CF82FF /* BookmarksController.h */,
+				BE4F9BEA17A665A100CF82FF /* BookmarksController.m */,
+				BE4F9BEB17A665A100CF82FF /* BookmarksController.xib */,
 				BE9286E7179D332000FF0CED /* NewBookmarkFolderController.h */,
 				BE9286E8179D332000FF0CED /* NewBookmarkFolderController.m */,
 				BE9286E9179D332000FF0CED /* NewBookmarkFolderController.xib */,
@@ -858,6 +881,9 @@
 		BEA4660117992C46004D5122 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BEDB6ED017A500FD00391046 /* BookmarkCell.h */,
+				BEDB6ED117A500FD00391046 /* BookmarkCell.m */,
+				BEDB6ED317A5011000391046 /* BookmarkCell.xib */,
 				BEDB6ECD17A4EC3D00391046 /* PromptView.h */,
 				BEDB6ECE17A4EC3D00391046 /* PromptView.m */,
 				BE9286E4179D31A700FF0CED /* FolderRenameTextField.h */,
@@ -1188,6 +1214,13 @@
 				BE9286E3179D2EE100FF0CED /* BookmarkFolderController.xib in Resources */,
 				BE9286EB179D332000FF0CED /* NewBookmarkFolderController.xib in Resources */,
 				BEDB6ED417A5011000391046 /* BookmarkCell.xib in Resources */,
+				BE4F9BED17A665A100CF82FF /* BookmarksController.xib in Resources */,
+				BEF705ED17A7667300A19693 /* BookmarkCell-Select@2x.png in Resources */,
+				BEF705EE17A7667300A19693 /* BookmarkCell-Selected@2x.png in Resources */,
+				BEF705F317A766A600A19693 /* NavBarBackButtonBackground-Disabled.png in Resources */,
+				BEF705F417A766A600A19693 /* NavBarBackButtonBackground-Disabled@2x.png in Resources */,
+				BEF705F517A766A600A19693 /* NavBarButtonBackground-Disabled.png in Resources */,
+				BEF705F617A766A600A19693 /* NavBarButtonBackground-Disabled@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1237,6 +1270,7 @@
 				BE9286EA179D332000FF0CED /* NewBookmarkFolderController.m in Sources */,
 				BEDB6ECF17A4EC3D00391046 /* PromptView.m in Sources */,
 				BEDB6ED217A500FD00391046 /* BookmarkCell.m in Sources */,
+				BE4F9BEC17A665A100CF82FF /* BookmarksController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -165,6 +165,41 @@
     }
 }
 
+#pragma mark - Show / Hide ToolKitBar.
+
+- (void)showToolbarWithCompletionHandler:(void(^)(void))completionHandler
+{
+    CGSize fullSize = self.view.frame.size;
+    CGRect containerFrame = CGRectMake(0, 0, fullSize.width, fullSize.height - 44);
+    CGRect barFrame = CGRectMake(0, fullSize.height - 44, fullSize.width, 44);
+    self.toolbar.hidden = NO;
+    [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.containerView.frame = containerFrame;
+        self.toolbar.frame = barFrame;
+    } completion:^(BOOL finished) {
+        if (completionHandler) {
+            completionHandler();
+        }
+    }];
+}
+
+- (void)hideToolbarWithCompletionHandler:(void(^)(void))completionHandler
+{
+    CGSize fullSize = self.view.frame.size;
+    CGRect containerFrame = CGRectMake(0, 0, fullSize.width, fullSize.height);
+    CGRect barFrame = CGRectMake(0, fullSize.height, fullSize.width, 44);
+    
+    [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.containerView.frame = containerFrame;
+        self.toolbar.frame = barFrame;
+    } completion:^(BOOL finished) {
+        self.toolbar.hidden = YES;
+        if (completionHandler) {
+            completionHandler();
+        }
+    }];
+}
+
 #pragma mark - Frame Helper Method.
 
 - (CGRect)centralFrame

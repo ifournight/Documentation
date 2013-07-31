@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@class Bookmark;
+@class Bookmark, BookmarkCell;
+
+@protocol BookmarkCellDelegate <NSObject>
+
+- (void)bookmarkCell:(BookmarkCell *)bookmarkCell selectControlDidPressed:(UIButton *)selectControl;
+
+@end
 
 @interface BookmarkCell : UITableViewCell
 
@@ -18,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 
 @property (weak, nonatomic) IBOutlet UIButton *selectControl;
+
+@property (weak, nonatomic) id<BookmarkCellDelegate>delegate;
 
 // Model
 @property (nonatomic, strong) Bookmark *bookmark;

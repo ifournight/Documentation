@@ -136,7 +136,7 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
         BookmarkFolderDocument *defaultFolderDocument = bookmarkManager.bookmarkFolderDocuments[0];
         [bookmarkManager addBookmarks:@[newBookmark] toFolder:defaultFolderDocument WithCompletionHandler:^{
             // PromptView
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{   
                 [self.bookmarkPromptView promptWithDuration:0.5];
             });
             // Update BookmarkFolderController and InsideBookmarkFolderController if necessary.
@@ -202,6 +202,8 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
         [self openNode:needToOpen];
     }   else if ([needToOpen isKindOfClass:[Outline class]]) {
         [self openOutline:needToOpen];
+    }   else if ([needToOpen isKindOfClass:[Bookmark class]]) {
+        [self openBookmark:needToOpen];
     }
 }
 
@@ -221,6 +223,18 @@ NSString *const ReaderControllerNeedOpenPageObjectKey = @"ReaderControllerNeedOp
 {
     NSLog(@"Reader Controller will load outline \"%@\" with URL: %@", outline.title, outline.URL);
     [self.webview loadRequest:[NSURLRequest requestWithURL:outline.URL]];
+}
+
+- (void)openBookmark:(Bookmark *)bookmark
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Load Bookmark URL When Needed.
+        bookmark.URL = [bookmark URLForBookmark];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Reader Controller will load bookmark \"%@\" with URL: %@", bookmark.name, bookmark.URL);
+            [self.webview loadRequest:[NSURLRequest requestWithURL:bookmark.URL]];
+        });
+    });
 }
 
 #pragma mark - Web view delegate AND URL Manipulation

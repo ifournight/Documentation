@@ -98,7 +98,6 @@
 								<string key="NSFrame">{{266, 0}, {44, 44}}</string>
 								<reference key="NSSuperview" ref="505123216"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIRestorationIdentifier">DefaultCellDisclosure</string>

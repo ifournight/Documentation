@@ -26,7 +26,6 @@ typedef NS_ENUM(NSInteger, BookmarkType) {
 @property (nonatomic, weak) BookmarkFolder *folder;
 
 - (id)initWithName:(NSString *)name;
-
 - (NSURL *)URLForBookmark;
 
 @end

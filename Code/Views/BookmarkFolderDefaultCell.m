@@ -26,6 +26,8 @@
         // Background
         UIImage *background = [[UIImage imageNamed:@"BookmarkFolderDefaultCellBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 10.0, 1.0, 10.0)];
         self.backgroundView = [[UIImageView alloc] initWithImage:background];
+        // Selection
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -34,6 +36,7 @@
 {
     _bookmarkFolder = bookmarkFolder;
     self.name.text = bookmarkFolder.name;
+    [self.name sizeToFit];
 }
 
 @end

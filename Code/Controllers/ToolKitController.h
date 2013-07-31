@@ -26,7 +26,11 @@
 
 @property (assign, nonatomic) NSInteger selectedIndex;
 
-//- (void)hideToolbar;
+// Hide ToolKitBar
+- (void)hideToolbarWithCompletionHandler:(void(^)(void))completionHandler;
+
+// Show ToolKitBar
+- (void)showToolbarWithCompletionHandler:(void(^)(void))completionHandler;
 
 @end
 

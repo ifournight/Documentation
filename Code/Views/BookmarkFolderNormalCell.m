@@ -37,6 +37,7 @@
                                                                                                          resizingMode:UIImageResizingModeTile];
         self.backgroundView = [[UIImageView alloc] initWithImage:background];
         // TODO: Selection BackgroundView
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }

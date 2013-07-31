@@ -24,8 +24,16 @@
     self = [super init];
     if (self) {
         _name = name;
-        NSManagedObject *managedObject = [self managedObjectForBookmarkWithName:name];
+        NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
+        context.persistentStoreCoordinator = [[LibraryManager share] coordinator];
+        // Fetch from Core Data
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Node"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"kName == %@", name];
+        request.resultType = NSManagedObjectResultType;
+        request.predicate = predicate;
+        NSManagedObject *managedObject = [context executeFetchRequest:request error:nil][0];
         // _type
+        NSLog(@"Create Bookmark with name:%@", [managedObject valueForKey:@"kName"]);
         NSInteger documentType = [[managedObject valueForKey:@"kDocumentType"] intValue];
         if (documentType == 1) {
             _type = BookmarkTypeSampleCode;
@@ -66,39 +74,29 @@
     [aCoder encodeObject:self.folder forKey:BookmarkFolderKey];
 }
 
-- (NSManagedObject *)managedObjectForBookmarkWithName:(NSString *)name
-{
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
-    context.persistentStoreCoordinator = [[LibraryManager share] persistentStoreCoordinator];
-    
-    // Fetch from Core Data
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Node"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"kName == '%@'", name];
-    request.resultType = NSManagedObjectResultType;
-    request.predicate = predicate;
-    NSManagedObject *managedObject = [context executeFetchRequest:request error:nil][0];
-    return managedObject;
-}
-
 - (NSURL *)URLForBookmark
 {
     NSURL *URL = nil;
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init];
+    context.persistentStoreCoordinator = [[LibraryManager share] coordinator];
+    
     // Fetch from Core Data
-    NSManagedObject *managedObject = [self managedObjectForBookmarkWithName:self.name];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Node"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"kName == %@", self.name];
+    request.resultType = NSManagedObjectResultType;
+    request.predicate = predicate;
+    NSManagedObject *managedObject = [context executeFetchRequest:request error:nil][0];
     // URLForNodeWithObject:
     NSPersistentStore *store = managedObject.objectID.persistentStore;
     Library *library = [[LibraryManager share] librariesByStoreID][store.identifier];
-    
     NSString *kPath = [managedObject valueForKey:@"kPath"];
     NSString *kAnchor = [managedObject valueForKey:@"kAnchor"];
-    
     NSString *path = [[library.path stringByAppendingPathComponent:kLibraryDocumentPath] stringByAppendingPathComponent:kPath];
-    
     URL = [NSURL fileURLWithPath:path];
-    
     if (kAnchor) {
         URL = [NSURL URLWithString:[[URL absoluteString] stringByAppendingFormat:@"#%@", kAnchor]];
     }
-	return URL;}
+	return URL;
+}
 
 @end

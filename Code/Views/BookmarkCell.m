@@ -20,7 +20,7 @@
         self.backgroundView = background;
         self.backgroundColor = [UIColor clearColor];
         // SelectionBackgroundView
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
         // Name Label BackgroundColor
         self.name.numberOfLines = 0;
         self.name.backgroundColor = [UIColor clearColor];
@@ -34,34 +34,45 @@
 }
 
 - (IBAction)selectControlPressed:(UIButton *)selectControl {
-    if (selectControl.selected) {
-        selectControl.selected = NO;
-        [self setSelected:NO animated:YES];
-    }   else {
-        selectControl.selected = YES;
-        [self setSelected:YES animated:YES];
-    }
+    [self.delegate bookmarkCell:self selectControlDidPressed:selectControl];
 }
-
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
+    [super setEditing:editing animated:YES];
     if (editing) {
         self.selectControl.hidden = NO;
+        self.selectControl.selected = NO;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }   else {
+        self.selectControl.selected = NO;
         self.selectControl.hidden = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     [self layoutSubviews];
 }
 
 - (void)setBookmark:(Bookmark *)bookmark
 {
+    _bookmark = bookmark;
     // Type
     self.type.image = [[Appearance share] imageForBookmarkType:bookmark.type];
     // Name Attributed String
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:bookmark.name attributes:[[Appearance share] textAttributesForBookmarkName]];
     self.name.attributedText = attributedText;
     [self setNeedsLayout];
+}
+
+- (CGSize)intrinsicContentSize
+{
+    if (self.bookmark) {
+        CGFloat nameLabelWidthToFit = self.bounds.size.width - 44.0;
+        CGSize nameLabelSize = [self.name sizeThatFits:CGSizeMake(nameLabelWidthToFit, CGFLOAT_MAX)];
+        CGFloat cellHeight = MAX(nameLabelSize.height + 13, 44);
+        return CGSizeMake(320.0, cellHeight);
+    }   else {
+        return CGSizeZero;
+    }
 }
 
 - (void)layoutSubviews

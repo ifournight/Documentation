@@ -121,4 +121,8 @@ typedef NS_ENUM(NSInteger, TokenTagViewType) {
 
 - (void)customToolKitBar:(UIToolbar *)toolKitBar;
 
+- (void)customToolBar:(UIToolbar *)toolBar;
+
+- (void)customToolBarButton:(UIBarButtonItem *)barButtonItem;
+
 @end

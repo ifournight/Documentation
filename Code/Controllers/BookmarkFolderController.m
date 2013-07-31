@@ -13,12 +13,14 @@
 #import "BookmarkFolderDocument.h"
 #import "Appearance.h"
 #import "ToolKitController.h"
+#import "BookmarksController.h"
 
 NSString *const BookmarkControllerNormalCellIdentifier = @"BookmarkControllerNormalCellIdentifier";
 NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDefaultCellIdentifier";
 
 @interface BookmarkFolderController ()
 
+@property (strong, nonatomic) UIBarButtonItem *back;
 @property (nonatomic, strong) UIBarButtonItem *edit;
 @property (nonatomic, strong) UIBarButtonItem *done;
 @property (nonatomic, strong) UIBarButtonItem *newFolder;
@@ -47,17 +49,27 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
     [[Appearance share] customNavBar:self.navigationController.navigationBar];
     // Title
     self.title = @"Bookmark Folders";
+    // Back Button
+    self.navigationItem.backBarButtonItem = self.back;
     // Edit Button
     self.navigationItem.rightBarButtonItem = self.edit;
     // Cell Registeration
     [self.tableView registerNib:[UINib nibWithNibName:@"BookmarkFolderNormalCell" bundle:nil] forCellReuseIdentifier:BookmarkControllerNormalCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"BookmarkFolderDefaultCell" bundle:nil] forCellReuseIdentifier:BookmarkControllerDefaultCellIdentifier];
+    // TableView SelectionStyle
+    
     // TableView delegate/ datasource
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     // TableView Offset to achieve design effect
     self.tableView.contentInset = UIEdgeInsetsMake(10.0, 0, 0, 0);
-    // Each Folder Bookmarks KVO
+    // TODO:Each Folder Bookmarks KVO
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Prepare for navigation pop when BookmarksController in editing mode.
+    [self.toolKitController showToolbarWithCompletionHandler:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,6 +79,16 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
 }
 
 #pragma mark - Button Action.
+
+- (UIBarButtonItem *)back
+{
+    if (!_back) {
+        _back = [[UIBarButtonItem alloc] init];
+        _back.title = @"Back";
+        [[Appearance share] customNavBarButton:_back];
+    }
+    return _back;
+}
 
 - (UIBarButtonItem *)edit
 {
@@ -135,9 +157,11 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
     if (editing) {
         self.navigationItem.leftBarButtonItem = self.newFolder;
         self.navigationItem.rightBarButtonItem = self.done;
+        [self.toolKitController hideToolbarWithCompletionHandler:nil];
     }   else {
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = self.edit;
+        [self.toolKitController showToolbarWithCompletionHandler:nil];
     }
     [self.tableView setEditing:editing animated:animated];
 }
@@ -184,6 +208,13 @@ NSString *const BookmarkControllerDefaultCellIdentifier = @"BookmarkControllerDe
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSInteger documentsCount = [[[BookmarkManager share] bookmarkFolderDocuments] count];
+    // Deal with TableView indexPath order and BookmarkManager's Docucments order.
+    BookmarkFolderDocument *folderDocument = [[BookmarkManager share] bookmarkFolderDocuments][documentsCount - indexPath.row - 1];
+    // Push BookmarksController
+    BookmarksController *bookmarksController = [[BookmarksController alloc] initWithNibName:nil bundle:nil];
+    bookmarksController.bookmarkFolderDocument = folderDocument;
+    [self.navigationController pushViewController:bookmarksController animated:YES];
 }
 
 #pragma mark - BookmarkNormalCellDelegate

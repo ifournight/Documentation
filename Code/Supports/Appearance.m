@@ -445,7 +445,7 @@
                forToolbarPosition:UIToolbarPositionAny
                        barMetrics:UIBarMetricsDefault];
     [readerBar setShadowImage:[[Appearance share] imageForReaderBarShadow]
-           forToolbarPosition:UIToolbarPositionAny];
+           forToolbarPosition:UIToolbarPositionTop];
 }
 
 - (void)customWebView:(UIWebView *)webView
@@ -476,19 +476,34 @@
     [navBar setTitleTextAttributes:[[Appearance share] titleTextAttributesForNavBar]];
 }
 
+- (void)customToolBar:(UIToolbar *)toolBar
+{
+    // Background
+    [toolBar setBackgroundImage:[[Appearance share] imageForNavBarBackground] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    // BarShadow
+    [toolBar setShadowImage:[[Appearance share] imageForNavBarShadow] forToolbarPosition:UIToolbarPositionTop];
+}
+
 - (void)customNavBarButton:(UIBarButtonItem *)barButtonItem
 {
     // BackButton Background Normal/ Selected
     [barButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"NavBarBackButtonBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [barButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"NavBarButtonBackground-Selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    [barButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"NavBarButtonBackground-Selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [barButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"NavBarBackButtonBackground-Selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [barButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"NavBarBackButtonBackground-Selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+      [barButtonItem setBackButtonBackgroundImage:[[UIImage imageNamed:@"NavBarBackButtonBackground-Disabled"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
     // Background Normal/ Selected
     [barButtonItem setBackgroundImage:[[UIImage imageNamed:@"NavBarButtonBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [barButtonItem setBackgroundImage:[[UIImage imageNamed:@"NavBarButtonBackground-Selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [barButtonItem setBackgroundImage:[[UIImage imageNamed:@"NavBarButtonBackground-Selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [barButtonItem setBackgroundImage:[[UIImage imageNamed:@"NavBarButtonBackground-Disabled"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 15.0, 9.0, 16.0)] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
     // TitleTextAttributes
     [barButtonItem setTitleTextAttributes:[[Appearance share] titleTextAttributesForNavBarButton] forState:UIControlStateNormal];
     [barButtonItem setTitleTextAttributes:[[Appearance share] titleTextAttributesForNavBarButton] forState:UIControlStateHighlighted];
+}
+
+- (void)customToolBarButton:(UIBarButtonItem *)barButtonItem
+{
+    [self customNavBarButton:barButtonItem];
 }
 
 - (void)customToolKitBar:(UIToolbar *)toolKitBar
@@ -496,7 +511,7 @@
     UIImage *background = [[UIImage imageNamed:@"ToolKit-Background"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 3.0, 0.0, 3.0)];
     UIImage *shaodow = [[UIImage imageNamed:@"ToolKit-Shadow"] resizableImageWithCapInsets:UIEdgeInsetsZero];
     [toolKitBar setBackgroundImage:background forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-    [toolKitBar setShadowImage:shaodow forToolbarPosition:UIToolbarPositionAny];
+    [toolKitBar setShadowImage:shaodow forToolbarPosition:UIToolbarPositionBottom];
 }
 
 @end

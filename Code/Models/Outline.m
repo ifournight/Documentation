@@ -21,7 +21,7 @@
         NSString *aref = dictionary[@"aref"];
         _URL = [NSURL URLWithString:href relativeToURL:book.rootURL];
         // NSLog(@"Outline %@ path: %@", _title, path);
-        NSLog(@"Outline %@ URL: %@", _title, _URL);
+//        NSLog(@"Outline %@ URL: %@", _title, _URL);
         _fragment = aref;
         NSMutableArray *children = [[NSMutableArray alloc] init];
         for (NSDictionary *childDictionary in dictionary[@"sections"]) {

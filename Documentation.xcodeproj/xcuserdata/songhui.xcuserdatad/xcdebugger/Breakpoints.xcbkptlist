@@ -45,12 +45,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Code/Controllers/ReaderController.m"
-         timestampString = "396077937.727501"
+         timestampString = "396866764.898987"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "272"
-         endingLineNumber = "272"
-         landmarkName = "-webViewDidFinishLoad:"
+         startingLineNumber = "286"
+         endingLineNumber = "286"
+         landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -58,12 +58,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Code/Controllers/ReaderController.m"
-         timestampString = "396077974.643626"
+         timestampString = "396866764.898987"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
-         landmarkName = "-reloadBook"
+         startingLineNumber = "319"
+         endingLineNumber = "319"
+         landmarkName = "-reloadTitle"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Code/Views/BookmarkCell.m"
+         timestampString = "396862838.785584"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
+         landmarkName = "-setEditing:animated:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
