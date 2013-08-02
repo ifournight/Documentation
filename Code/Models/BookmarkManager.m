@@ -330,10 +330,11 @@ typedef void (^OnFolderReady) (void);
 - (void)deleteBookmarks:(NSArray *)deletedBookmarks inFolder:(BookmarkFolderDocument *)folderDocument WithCompletionHandler:(void(^)(void))completionHandler
 {
     __block BookmarkFolderDocument *blockFolderDocument = folderDocument;
+    __block NSArray *blockDeletedBookmarks = deletedBookmarks;
     OnFolderReady onFolderReady = ^() {
-        NSMutableArray *bookmarks = blockFolderDocument.bookmarkFolder.bookmarks;
-        NSIndexSet *indexs = [bookmarks indexesOfObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, bookmarks.count)] options:NSEnumerationConcurrent passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [bookmarks containsObject:obj];
+        NSMutableArray *allBookmarks = blockFolderDocument.bookmarkFolder.bookmarks;
+        NSIndexSet *indexs = [allBookmarks indexesOfObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, allBookmarks.count)] options:NSEnumerationConcurrent passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return [blockDeletedBookmarks containsObject:obj];
         }];
         [blockFolderDocument.bookmarkFolder removeBookmarksAtIndexes:indexs];
         [blockFolderDocument updateChangeCount:UIDocumentChangeDone];
@@ -358,8 +359,8 @@ typedef void (^OnFolderReady) (void);
     };
     
     OnFolderReady onFromFolderReady = ^() {
-        NSMutableArray *bookmarks = blockFromFolderDocument.bookmarkFolder.bookmarks;
-        NSIndexSet *indexs = [bookmarks indexesOfObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, bookmarks.count)] options:NSEnumerationConcurrent passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSMutableArray *allBookmarks = blockFromFolderDocument.bookmarkFolder.bookmarks;
+        NSIndexSet *indexs = [allBookmarks indexesOfObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, allBookmarks.count)] options:NSEnumerationConcurrent passingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             return [bookmarks containsObject:obj];
         }];
         [blockFromFolderDocument.bookmarkFolder removeBookmarksAtIndexes:indexs];

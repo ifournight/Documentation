@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BookmarkCell.h"
+#import "MoveToFolderController.h"
 
 @class BookmarkFolderDocument;
 
 // Responsible for display bookmarks inside specified BookmarkFolderDocument.
-@interface BookmarksController : UIViewController<UITableViewDataSource, UITableViewDelegate, BookmarkCellDelegate>
+@interface BookmarksController : UIViewController<UITableViewDataSource, UITableViewDelegate, BookmarkCellDelegate, MoveToFolderControllerProtocol>
 
 // One BookmarkFolderDocument for one bookmarksController
 @property (nonatomic, strong) BookmarkFolderDocument *bookmarkFolderDocument;

@@ -39,6 +39,10 @@
 		BE9286E6179D31A700FF0CED /* FolderRenameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286E5179D31A700FF0CED /* FolderRenameTextField.m */; };
 		BE9286EA179D332000FF0CED /* NewBookmarkFolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9286E8179D332000FF0CED /* NewBookmarkFolderController.m */; };
 		BE9286EB179D332000FF0CED /* NewBookmarkFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE9286E9179D332000FF0CED /* NewBookmarkFolderController.xib */; };
+		BE93F39A17AB3FD100ECB0F2 /* MoveToFolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE93F39817AB3FD100ECB0F2 /* MoveToFolderController.m */; };
+		BE93F39B17AB3FD100ECB0F2 /* MoveToFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE93F39917AB3FD100ECB0F2 /* MoveToFolderController.xib */; };
+		BE93F39E17AB4CFD00ECB0F2 /* MoveToFolderIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = BE93F39C17AB4CFD00ECB0F2 /* MoveToFolderIndicator.png */; };
+		BE93F39F17AB4CFD00ECB0F2 /* MoveToFolderIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE93F39D17AB4CFD00ECB0F2 /* MoveToFolderIndicator@2x.png */; };
 		BEA464571798E8C5004D5122 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA464561798E8C5004D5122 /* UIKit.framework */; };
 		BEA464591798E8C5004D5122 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA464581798E8C5004D5122 /* Foundation.framework */; };
 		BEA4645B1798E8C5004D5122 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA4645A1798E8C5004D5122 /* CoreGraphics.framework */; };
@@ -317,6 +321,11 @@
 		BE9286E7179D332000FF0CED /* NewBookmarkFolderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewBookmarkFolderController.h; path = Code/Controllers/NewBookmarkFolderController.h; sourceTree = "<group>"; };
 		BE9286E8179D332000FF0CED /* NewBookmarkFolderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewBookmarkFolderController.m; path = Code/Controllers/NewBookmarkFolderController.m; sourceTree = "<group>"; };
 		BE9286E9179D332000FF0CED /* NewBookmarkFolderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewBookmarkFolderController.xib; path = Code/Controllers/NewBookmarkFolderController.xib; sourceTree = "<group>"; };
+		BE93F39717AB3FD100ECB0F2 /* MoveToFolderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveToFolderController.h; path = Code/Controllers/MoveToFolderController.h; sourceTree = "<group>"; };
+		BE93F39817AB3FD100ECB0F2 /* MoveToFolderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoveToFolderController.m; path = Code/Controllers/MoveToFolderController.m; sourceTree = "<group>"; };
+		BE93F39917AB3FD100ECB0F2 /* MoveToFolderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoveToFolderController.xib; path = Code/Controllers/MoveToFolderController.xib; sourceTree = "<group>"; };
+		BE93F39C17AB4CFD00ECB0F2 /* MoveToFolderIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoveToFolderIndicator.png; path = "../../../../Xcode Reader UI/Sketch/Reader for Xcode Image Assets/MoveToFolderIndicator.png"; sourceTree = "<group>"; };
+		BE93F39D17AB4CFD00ECB0F2 /* MoveToFolderIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MoveToFolderIndicator@2x.png"; path = "../../../../Xcode Reader UI/Sketch/Reader for Xcode Image Assets/MoveToFolderIndicator@2x.png"; sourceTree = "<group>"; };
 		BEA464531798E8C5004D5122 /* Documentation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Documentation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA464561798E8C5004D5122 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BEA464581798E8C5004D5122 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -640,6 +649,8 @@
 		BEA464821798F5C8004D5122 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				BE93F39C17AB4CFD00ECB0F2 /* MoveToFolderIndicator.png */,
+				BE93F39D17AB4CFD00ECB0F2 /* MoveToFolderIndicator@2x.png */,
 				BEF705EF17A766A600A19693 /* NavBarBackButtonBackground-Disabled.png */,
 				BEF705F017A766A600A19693 /* NavBarBackButtonBackground-Disabled@2x.png */,
 				BEF705F117A766A600A19693 /* NavBarButtonBackground-Disabled.png */,
@@ -839,6 +850,9 @@
 		BEA465F31798F5D6004D5122 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BE93F39717AB3FD100ECB0F2 /* MoveToFolderController.h */,
+				BE93F39817AB3FD100ECB0F2 /* MoveToFolderController.m */,
+				BE93F39917AB3FD100ECB0F2 /* MoveToFolderController.xib */,
 				BE4F9BE917A665A100CF82FF /* BookmarksController.h */,
 				BE4F9BEA17A665A100CF82FF /* BookmarksController.m */,
 				BE4F9BEB17A665A100CF82FF /* BookmarksController.xib */,
@@ -1221,6 +1235,9 @@
 				BEF705F417A766A600A19693 /* NavBarBackButtonBackground-Disabled@2x.png in Resources */,
 				BEF705F517A766A600A19693 /* NavBarButtonBackground-Disabled.png in Resources */,
 				BEF705F617A766A600A19693 /* NavBarButtonBackground-Disabled@2x.png in Resources */,
+				BE93F39B17AB3FD100ECB0F2 /* MoveToFolderController.xib in Resources */,
+				BE93F39E17AB4CFD00ECB0F2 /* MoveToFolderIndicator.png in Resources */,
+				BE93F39F17AB4CFD00ECB0F2 /* MoveToFolderIndicator@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1271,6 +1288,7 @@
 				BEDB6ECF17A4EC3D00391046 /* PromptView.m in Sources */,
 				BEDB6ED217A500FD00391046 /* BookmarkCell.m in Sources */,
 				BE4F9BEC17A665A100CF82FF /* BookmarksController.m in Sources */,
+				BE93F39A17AB3FD100ECB0F2 /* MoveToFolderController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

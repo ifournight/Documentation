@@ -13,6 +13,7 @@
 #import "BookmarkFolderDocument.h"
 #import "ToolKitController.h"
 #import "ReaderController.h"
+#import "BookmarkManager.h"
 
 NSString *const BookmarkCellIdentifier = @"BookmarkCellIdentifier";
 
@@ -92,6 +93,7 @@ NSString *const BookmarkCellIdentifier = @"BookmarkCellIdentifier";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [self setEditing:NO animated:YES];
 }
 
@@ -184,6 +186,15 @@ NSString *const BookmarkCellIdentifier = @"BookmarkCellIdentifier";
         [self addSelectedIndexPathsObject:indexPath];
         cell.selectControl.selected = YES;
     }
+}
+
+- (NSArray *)selectedBookmarks
+{
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    for (NSIndexPath *indexPath in self.selectedIndexPaths) {
+        [results addObject:self.bookmarkFolderDocument.bookmarkFolder.bookmarks[indexPath.row]];
+    }
+    return [results copy];
 }
 
 - (NSInteger)countOfSelectedIndexPaths
@@ -285,11 +296,66 @@ NSString *const BookmarkCellIdentifier = @"BookmarkCellIdentifier";
 #pragma mark - Edit Bar
 
 - (IBAction)deleteButtonPressed:(id)sender {
+    NSArray *selectedBookmarks = [self selectedBookmarks];
     
+    if (selectedBookmarks.count == 0) {
+        return;
+    }
+    
+    BookmarkManager *bookmarkManager = [BookmarkManager share];
+    [bookmarkManager deleteBookmarks:selectedBookmarks inFolder:self.bookmarkFolderDocument WithCompletionHandler:^{
+        [self setEditing:NO animated:YES];
+        [self.tableView reloadData];
+    }];
 }
 
 
 - (IBAction)moveToFolderButtonPressed:(id)sender {
+    NSArray *selectedBookmarks = [self selectedBookmarks];
+    
+    if (selectedBookmarks.count == 0) {
+        return;
+    }
+
+    if (!self.toolKitController) {
+        return;
+    }
+    
+    MoveToFolderController *moveToFolderController = [[MoveToFolderController alloc] initWithNibName:nil bundle:nil];
+    moveToFolderController.bookmarksNeedToMove = selectedBookmarks;
+    moveToFolderController.currentFolderDocument = self.bookmarkFolderDocument;
+    moveToFolderController.delegate = self;
+    moveToFolderController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    
+    [self.toolKitController presentViewController:moveToFolderController animated:YES completion:^{
+        [self setEditing:NO animated:NO];
+    }];
+}
+
+- (void)moveToFolderController:(MoveToFolderController *)moveToFolderController
+             needMoveBookmarks:(NSArray *)bookmarks
+                    fromFolder:(BookmarkFolderDocument *)fromFolderDocument
+                      toFolder:(BookmarkFolderDocument *)toFolderDocument
+{
+    if (!self.toolKitController) {
+        return;
+    }
+    BookmarkManager *bookmarkManager = [BookmarkManager share];
+    [self.toolKitController dismissViewControllerAnimated:YES completion:^{
+        [bookmarkManager moveBookmarks:bookmarks fromFolder:fromFolderDocument toFolder:toFolderDocument WithCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }];
+    }];
+}
+
+- (void)moveToFolderControllerDemandDismiss
+{
+    if (!self.toolKitController) {
+        return;
+    }
+    [self.toolKitController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - KVO
